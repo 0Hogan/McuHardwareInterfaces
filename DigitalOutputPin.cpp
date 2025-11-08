@@ -1,3 +1,37 @@
+#if __has_include(<McuLogger.h>)
+#include <McuLogger.h>
+#else
+#define LOG_DEBUG(fmt, ...)
+#endif
+
+#if __has_include(<Arduino.h>)
+#include <Arduino.h>
+#elif __has_include(<driver/gpio.h>)
+#include "driver/gpio.h"
+
+enum PinMode
+{
+    INPUT = GPIO_MODE_INPUT,
+    OUTPUT = GPIO_MODE_OUTPUT
+};
+
+void pinMode(uint8_t pin, PinMode mode)
+{
+    gpio_config_t gpioAttributes;
+    // gpioAttributes.pin_bit_mask = (1ULL << pin);
+    gpioAttributes.mode = mode == INPUT ? GPIO_MODE_INPUT : GPIO_MODE_OUTPUT;
+    gpioAttributes.pull_up_en = GPIO_PULLUP_DISABLE;
+    gpioAttributes.pull_down_en = GPIO_PULLDOWN_DISABLE;
+    gpioAttributes.intr_type = GPIO_INTR_DISABLE;
+    gpio_config(&gpioAttributes);
+}
+
+void digitalWrite(uint8_t pin, bool level)
+{
+    gpio_set_level(static_cast<gpio_num_t>(pin), level ? 1 : 0);
+}
+#endif
+
 #include "DigitalOutputPin.h"
 
 /**

@@ -1,6 +1,3 @@
-#include <Arduino.h>
-#include <McuLogger.h>
-
 #include <cstdint>
 
 #ifndef DIGITAL_OUTPUT_PIN_H
