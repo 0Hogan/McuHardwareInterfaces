@@ -1,5 +1,5 @@
 #include <Log.h>
-#include <McuHardwareInterfaces.h>
+#include <McuHardwareInterfaces.hpp>
 
 DigitalOutputPin pin1(13);
 
