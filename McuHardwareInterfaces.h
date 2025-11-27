@@ -1,6 +1,0 @@
-#ifndef MCU_HARDWARE_INTERFACES_H
-#define MCU_HARDWARE_INTERFACES_H
-
-#include "DigitalOutputPin.h"
-
-#endif // MCU_HARDWARE_INTERFACES_H
